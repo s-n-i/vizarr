@@ -130,6 +130,7 @@ export async function createSourceData(config: ImageLayerConfig): Promise<Source
   const { channel_axis, labels } = getAxisLabelsAndChannelAxis(config, axes, data[0]);
 
   const tileSize = guessTileSize(data[0]);
+  console.log(data,'data')
   const loader = data.map((d) => new ZarrPixelSource(d, labels, tileSize));
   const [base] = loader;
 
@@ -205,7 +206,15 @@ export function initLayerStateFromSource(source: SourceData & { id: string }): L
     modelMatrix: source.model_matrix,
     onClick: source.onClick,
   };
-
+  console.log(source,'source')
+source.loaders=[
+  {loader: source.loader[0], row:0, col:0, name: 'x1'},
+  {loader: source.loader[0], row:1, col:0, name: 'x2'},
+  {loader: source.loader[0], row:0, col:1, name: 'x3'},
+  {loader: source.loader[0], row:1, col:1, name: 'x4'}
+]
+source.columns=2;
+source.rows=2;
   if ('loaders' in source) {
     return {
       Layer: GridLayer,

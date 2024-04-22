@@ -119,7 +119,7 @@ export default class GridLayer<P extends GridLayerProps = GridLayerProps> extend
   renderLayers() {
     const { gridData, width, height } = this.state;
     if (width === 0 || height === 0) return null; // early return if no data
-
+console.log(gridData,'gridData')
     const { rows, columns, spacer = 0, id = '' } = this.props;
     const layers = gridData.map((d: any) => {
       const y = d.row * (height + spacer);

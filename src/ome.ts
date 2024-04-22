@@ -237,7 +237,7 @@ export async function loadOmeroMultiscales(
   const axis_labels = getNgffAxisLabels(axes);
   const meta = parseOmeroMeta(attrs.omero, axes);
   const tileSize = guessTileSize(data[0]);
-
+  console.log('arr',data)
   const loader = data.map((arr) => new ZarrPixelSource(arr, axis_labels, tileSize));
   return {
     loader: loader,
